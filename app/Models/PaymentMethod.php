@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class PaymentMethod extends Model
+{
+    use HasFactory, SoftDeletes;
+
+    /*
+    |--------------------------------------------------------------------------
+    | goblan variables
+    |--------------------------------------------------------------------------
+    */
+
+    protected $fillable = [
+        'name',
+        'modoPaypal',
+        'clienteIdPaypal',
+        'llaveSecretaPaypal',
+        'modoBinance',
+        'merchantIdBinance',
+        'accountIdBinance',
+        'apiKeyBinance',
+        'currency_id',
+
+    ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
+
+    public function currencies()
+    {
+        return $this->hasMany(Currency::class, 'currency_id');
+    }
+
+}
